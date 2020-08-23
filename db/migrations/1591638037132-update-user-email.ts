@@ -1,5 +1,4 @@
-import { Migration } from "https://deno.land/x/nessie@v1.0.0-rc3/mod.ts";
-import { Schema } from "https://deno.land/x/nessie@v1.0.0-rc3/qb.ts";
+import { Migration } from "https://deno.land/x/nessie@v1.0.4/mod.ts";
 
 /** Runs on migrate */
 export const up: Migration = () => {

@@ -8,7 +8,7 @@ import {
   required,
   isEmail,
   lengthBetween,
-} from "https://deno.land/x/validasaur@v0.7.0/src/rules.ts";
+} from "https://deno.land/x/validasaur@v0.14.0/src/rules.ts";
 
 import * as authService from "./../services/auth.service.ts";
 import { requestValidator } from "./../middlewares/request-validator.middleware.ts";
@@ -34,7 +34,7 @@ const register = [
   /** router handler */
   async (ctx: Context) => {
     const request = ctx.request;
-    const userData = (await request.body()).value as CreateUser;
+    const userData = await request.body().value as CreateUser;
     const user = await authService.registerUser(userData);
     ctx.response.body = user;
   },
@@ -55,7 +55,7 @@ const login = [
   /** router handler */
   async (ctx: Context) => {
     const request = ctx.request;
-    const credential = (await request.body()).value as LoginCredential;
+    const credential = await request.body().value as LoginCredential;
     const token = await authService.loginUser(credential);
     ctx.response.body = token;
   },
@@ -70,7 +70,7 @@ const refreshToken = [
   /** router handler */
   async (ctx: Context) => {
     const request = ctx.request;
-    const data = (await request.body()).value as RefreshToken;
+    const data = await request.body().value as RefreshToken;
 
     const token = await authService.refreshToken(
       data["refresh_token"],

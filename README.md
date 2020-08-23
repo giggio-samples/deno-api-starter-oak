@@ -38,6 +38,7 @@ We can run the project **with/ without Docker**.
         - docker-compose installed.
     - To run API server without Docker we need
         - MySQL server running &
+          - You can run it with Docker by running: `docker run --name deno-sample-mysql -e MYSQL_ROOT_PASSWORD=example -e MYSQL_DATABASE=deno_api_db -d -p 3306:3306 mysql --default-authentication-plugin=mysql_native_password`
         - Deno run time installed
 - **Configuration**
     - In application root, rename example env file `env.example` to `.env`.
@@ -62,14 +63,14 @@ We use [nessie](https://deno.land/x/nessie) to manage database migration.
 - In the application root, we have `nessie.config.ts`. Make sure to update this with the DB credentials. 
 - Run the following command to run the migration. Migration should create necessary tables and dump the data.
 ```
-$ deno run --allow-net --allow-read --allow-write https://deno.land/x/nessie@v1.0.0-rc3/cli.ts migrate
+$ deno run --allow-net --allow-read --allow-write https://deno.land/x/nessie@v1.0.4/cli.ts migrate
 ```
 
 With this, the user table would be created and the table would be seeded with fake data
 
 - Further, to add new migration, for example, to create new product table run
 ```
-deno run --allow-net --allow-read --allow-write https://deno.land/x/nessie@v1.0.0-rc3/cli.ts make create_product
+deno run --allow-net --allow-read --allow-write https://deno.land/x/nessie@v1.0.4/cli.ts make create_product
 ```
 
 ## Modules
@@ -77,11 +78,11 @@ deno run --allow-net --allow-read --allow-write https://deno.land/x/nessie@v1.0.
 
 | Package  | Purpose |
 | ---------|---------|
-|[oak@v5.0.0](https://deno.land/x/oak@v5.0.0)| Deno middleware framework|
+|[oak@v6.0.2](https://deno.land/x/oak@v6.0.2)| Deno middleware framework|
 |[dotenv@v0.4.2](https://deno.land/x/dotenv@v0.4.2)| Read env variables|
 |[mysql@2.2.0](https://deno.land/x/mysql@2.2.0)|MySQL driver for Deno|
-|[nessie@v1.0.0-rc3](https://deno.land/x/nessie@v1.0.0-rc3)| DB migration tool for Deno|
-|[validasaur@v0.7.0](https://deno.land/x/validasaur@v0.7.0)| validation library|
+|[nessie@v1.0.4](https://deno.land/x/nessie@v1.0.4)| DB migration tool for Deno|
+|[validasaur@v0.14.0](https://deno.land/x/validasaur@v0.14.0)| validation library|
 |[djwt@v0.9.0](https://deno.land/x/djwt@v0.9.0)| JWT token encoding|
 |[bcrypt@v0.2.1](https://deno.land/x/bcrypt@v0.2.1)| bcrypt encription lib|
 
@@ -143,14 +144,14 @@ deno run --allow-net --allow-read --allow-write https://deno.land/x/nessie@v1.0.
     ```
 
 ## How to validate request body
-- Here we used [validasaur@v0.7.0](https://deno.land/x/validasaur@v0.7.0) module for validating forms or request body. List of available rules can be found [here](https://deno.land/x/validasaur@v0.7.0/#available-rules) 
+- Here we used [validasaur@v0.14.0](https://deno.land/x/validasaur@v0.14.0) module for validating forms or request body. List of available rules can be found [here](https://deno.land/x/validasaur@v0.14.0/#available-rules) 
 - [requestValidator](./middlewares/request-validator.middleware.ts) middleware added to validate the request body.
 ```
 //auth.routes.ts
 import {
   required,
   isEmail,
-} from "https://deno.land/x/validasaur@v0.7.0/src/rules.ts";
+} from "https://deno.land/x/validasaur@v0.14.0/src/rules.ts";
 
 import { requestValidator } from "./../middlewares/request-validator.middleware.ts";
 

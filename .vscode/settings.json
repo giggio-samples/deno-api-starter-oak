@@ -1,0 +1,13 @@
+{
+  "debug.javascript.usePreview": false,
+  "deno.enable": true,
+  "deno.unstable": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "vsicons.presets.angular": false,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+  }
+}

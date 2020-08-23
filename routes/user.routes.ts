@@ -2,11 +2,11 @@ import {
   helpers,
   Status,
   httpErrors,
-} from "https://deno.land/x/oak@v5.0.0/mod.ts";
+} from "https://deno.land/x/oak@v6.0.2/mod.ts";
 import {
   required,
   isEmail,
-} from "https://deno.land/x/validasaur@v0.7.0/src/rules.ts";
+} from "https://deno.land/x/validasaur@v0.14.0/src/rules.ts";
 import * as userService from "./../services/user.service.ts";
 import { requestValidator, userGuard } from "./../middlewares/middlewares.ts";
 import { Context, UserRole } from "./../types.ts";
@@ -63,7 +63,7 @@ const updateUser = [
     if (authUser) {
       if (id === authUser.id || hasUserRole(authUser, UserRole.ADMIN)) {
         const request = ctx.request;
-        const userData = (await request.body()).value;
+        const userData = await request.body().value;
         const user = await userService.updateUser(+id, userData);
         ctx.response.body = user;
         return;
