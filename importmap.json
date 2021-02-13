@@ -1,0 +1,14 @@
+{
+  "imports": {
+    "http/": "https://deno.land/std@0.87.0/http/",
+    "testing/": "https://deno.land/std@0.87.0/testing/",
+    "dotenv/": "https://deno.land/x/dotenv@v2.0.0/",
+    "nessie/": "https://deno.land/x/nessie@1.1.3/",
+    "oak/": "https://deno.land/x/oak@v6.5.0/",
+    "cors/": "https://deno.land/x/cors@v1.2.1/",
+    "mysql/": "https://deno.land/x/mysql@v2.7.0/",
+    "bcrypt/": "https://deno.land/x/bcrypt@v0.2.4/",
+    "djwt/": "https://deno.land/x/djwt@v2.2/",
+    "validasaur/": "https://deno.land/x/validasaur@v0.15.0/"
+  }
+}

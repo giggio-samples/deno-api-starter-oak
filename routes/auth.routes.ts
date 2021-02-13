@@ -1,14 +1,10 @@
 import {
   Context,
   CreateUser,
-  RefreshToken,
   LoginCredential,
+  RefreshToken,
 } from "./../types.ts";
-import {
-  required,
-  isEmail,
-  lengthBetween,
-} from "https://deno.land/x/validasaur@v0.14.0/src/rules.ts";
+import { isEmail, lengthBetween, required } from "validasaur/src/rules.ts";
 
 import * as authService from "./../services/auth.service.ts";
 import { requestValidator } from "./../middlewares/request-validator.middleware.ts";
@@ -79,4 +75,4 @@ const refreshToken = [
   },
 ];
 
-export { login, register, refreshToken };
+export { login, refreshToken, register };

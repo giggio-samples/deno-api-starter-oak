@@ -1,9 +1,9 @@
 import {
   ValidationErrors,
   ValidationRules,
-} from "https://deno.land/x/validasaur@v0.14.0/src/interfaces.ts";
-import { validate } from "https://deno.land/x/validasaur@v0.14.0/src/validate.ts";
-import { httpErrors } from "https://deno.land/x/oak@v6.0.2/mod.ts";
+} from "validasaur/src/interfaces.ts";
+import { validate } from "validasaur/src/validate.ts";
+import { httpErrors } from "oak/mod.ts";
 import { Context } from "./../types.ts";
 
 /**
@@ -21,7 +21,7 @@ const getErrorMessage = (
 };
 
 /**
- * request validation middleware 
+ * request validation middleware
  * validate request body with given validation rules
  */
 const requestValidator = ({ bodyRules }: { bodyRules: ValidationRules }) => {

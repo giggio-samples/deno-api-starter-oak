@@ -1,4 +1,4 @@
-import { Seed } from "https://deno.land/x/nessie@v1.0.4/mod.ts";
+import { Seed } from "nessie/mod.ts";
 import * as encription from "../../helpers/encription.ts";
 
 export const run: Seed = async () => {

@@ -1,4 +1,4 @@
-import { Migration } from "https://deno.land/x/nessie@v1.0.4/mod.ts";
+import { Migration } from "nessie/mod.ts";
 
 /** Runs on migrate */
 export const up: Migration = () => {

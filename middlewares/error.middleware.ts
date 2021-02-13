@@ -1,7 +1,4 @@
-import {
-  isHttpError,
-  Status,
-} from "https://deno.land/x/oak@v6.0.2/mod.ts";
+import { isHttpError, Status } from "oak/mod.ts";
 import { config } from "./../config/config.ts";
 import { Context } from "./../types.ts";
 

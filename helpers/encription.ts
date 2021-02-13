@@ -1,6 +1,6 @@
-import * as bcrypt from "https://deno.land/x/bcrypt@v0.2.1/mod.ts";
+import * as bcrypt from "bcrypt/mod.ts";
 /**
- * encript given string 
+ * encript given string
  */
 const encript = async (password: string) => {
   return await bcrypt.hash(password);
@@ -13,4 +13,4 @@ const compare = async (password: string, hash: string) => {
   return await bcrypt.compare(password, hash);
 };
 
-export { encript, compare };
+export { compare, encript };

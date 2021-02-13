@@ -1,6 +1,6 @@
-import { Application } from "https://deno.land/x/oak@v6.0.2/mod.ts";
+import { oakCors } from "cors/mod.ts";
+import { Application } from "oak/mod.ts";
 import * as middlewares from "./middlewares/middlewares.ts";
-import { oakCors } from "https://deno.land/x/cors/mod.ts";
 import { router } from "./routes/routes.ts";
 import { Context } from "./types.ts";
 
@@ -15,5 +15,12 @@ app.use(middlewares.JWTAuthMiddleware);
 
 app.use(router.routes());
 app.use(router.allowedMethods());
+
+app.addEventListener("listen", ({ hostname, port, secure }) => {
+  console.log(
+    `Listening on: ${secure ? "https://" : "http://"}${hostname ??
+      "localhost"}:${port}`,
+  );
+});
 
 await app.listen({ port });

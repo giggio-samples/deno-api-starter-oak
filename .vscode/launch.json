@@ -1,0 +1,42 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Deno as Node",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "deno",
+      "runtimeArgs": [
+        "run",
+        "--unstable",
+        "--import-map",
+        "importmap.json",
+        "--inspect-brk",
+        "-A",
+        "${file}"
+      ],
+      "env": {
+        "RUST_BACKTRACE": "1"
+      },
+      "port": 9229
+    },
+    { // not working, see https://github.com/denoland/vscode_deno/issues/233 and https://github.com/denoland/vscode_deno/issues/12#issuecomment-682427504
+      "type": "pwa-node",
+      "request": "launch",
+      "name": "Launch Deno",
+      "program": "${file}",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "deno",
+      "runtimeArgs": [
+        "run",
+        "--inspect-brk=127.0.0.1:9229",
+        "--allow-all",
+        "--unstable",
+        "--import-map",
+        "importmap.json"
+      ],
+      "attachSimplePort": 9229
+    }
+  ]
+}

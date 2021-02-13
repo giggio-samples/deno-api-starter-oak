@@ -151,7 +151,7 @@ deno run --allow-net --allow-read --allow-write https://deno.land/x/nessie@v1.0.
 import {
   required,
   isEmail,
-} from "https://deno.land/x/validasaur@v0.14.0/src/rules.ts";
+} from "validasaur/src/rules.ts";
 
 import { requestValidator } from "./../middlewares/request-validator.middleware.ts";
 
@@ -191,7 +191,7 @@ JWT_REFRESH_TOKEN_EXP=3600000
 JWT_TOKEN_SECRET=HEGbulKGDblAFYskBLml
 ```
 - Request header should contain JWT bearer token as `Authorization` key.
-- Middleware [JWTAuthMiddleware](./middlewares/jwt-auth.middleware.ts) used to parse the `Authorization` header and decode the payload as `ctx.user`. 
+- Middleware [JWTAuthMiddleware](./middlewares/jwt-auth.middleware.ts) used to parse the `Authorization` header and decode the payload as `ctx.user`.
 
 ## How to add auth guards
 - Auth guards are dependent on the `ctx.user` provided by [JWTAuthMiddleware](./middlewares/jwt-auth.middleware.ts) middleware.
@@ -202,7 +202,7 @@ JWT_TOKEN_SECRET=HEGbulKGDblAFYskBLml
 //user.routes.ts
 
 /**
- * get list of users 
+ * get list of users
  * user with ADMIN role only can access
  */
 const getUsers = [
@@ -214,7 +214,7 @@ const getUsers = [
 
 
 /**
- * get signed user detail 
+ * get signed user detail
  * any authenticated user can access
  */
 const getMe = [

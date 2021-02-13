@@ -1,13 +1,8 @@
-import * as userRepo from "./../repositories/user.repository.ts";
-import { httpErrors } from "https://deno.land/x/oak@v6.0.2/mod.ts";
+import { httpErrors } from "oak/mod.ts";
 import * as encription from "../helpers/encription.ts";
 import * as jwt from "../helpers/jwt.ts";
-import {
-  CreateUser,
-  UserRole,
-  UserInfo,
-  LoginCredential,
-} from "../types.ts";
+import { CreateUser, LoginCredential, UserInfo, UserRole } from "../types.ts";
+import * as userRepo from "./../repositories/user.repository.ts";
 
 /**
  * register user
@@ -50,8 +45,8 @@ export const loginUser = async (credential: LoginCredential) => {
       /** return token */
       if (isValidPass) {
         return {
-          "access_token": jwt.getAuthToken(user),
-          "refresh_token": jwt.getRefreshToken(user),
+          "access_token": await jwt.getAuthToken(user),
+          "refresh_token": await jwt.getRefreshToken(user),
         };
       }
     }
@@ -66,8 +61,12 @@ export const refreshToken = async (token: string) => {
     const payload = await jwt.getJwtPayload(token);
     if (payload) {
       /** get user from token */
-      const id = payload.id as number;
-      const user = await userRepo.getUserById(id);
+      if (!(typeof payload.id == "number")) {
+        throw new httpErrors.Unauthorized(
+          "No id in payload or not the correct type.",
+        );
+      }
+      const user = await userRepo.getUserById(payload.id);
 
       if (user) {
         /** check user active status */
@@ -76,8 +75,8 @@ export const refreshToken = async (token: string) => {
         }
 
         return {
-          "access_token": jwt.getAuthToken(user),
-          "refresh_token": jwt.getRefreshToken(user),
+          "access_token": await jwt.getAuthToken(user),
+          "refresh_token": await jwt.getRefreshToken(user),
         };
       }
     }

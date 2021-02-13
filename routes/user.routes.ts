@@ -1,16 +1,9 @@
-import {
-  helpers,
-  Status,
-  httpErrors,
-} from "https://deno.land/x/oak@v6.0.2/mod.ts";
-import {
-  required,
-  isEmail,
-} from "https://deno.land/x/validasaur@v0.14.0/src/rules.ts";
-import * as userService from "./../services/user.service.ts";
-import { requestValidator, userGuard } from "./../middlewares/middlewares.ts";
-import { Context, UserRole } from "./../types.ts";
+import { isEmail, required } from "validasaur/src/rules.ts";
+import { helpers, httpErrors, Status } from "oak/mod.ts";
 import { hasUserRole } from "../helpers/roles.ts";
+import { requestValidator, userGuard } from "./../middlewares/middlewares.ts";
+import * as userService from "./../services/user.service.ts";
+import { Context, UserRole } from "./../types.ts";
 
 /** request body schema for user create/update */
 const userSchema = {
@@ -86,4 +79,4 @@ const deleteUser = [
   },
 ];
 
-export { getUsers, getUserById, updateUser, deleteUser };
+export { deleteUser, getUserById, getUsers, updateUser };

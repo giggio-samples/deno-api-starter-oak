@@ -1,9 +1,9 @@
-import { httpErrors } from "https://deno.land/x/oak@v6.0.2/mod.ts";
-import { Context, UserRole } from "./../types.ts";
+import { httpErrors } from "oak/mod.ts";
 import { hasUserRole } from "../helpers/roles.ts";
+import { Context, UserRole } from "./../types.ts";
 
 /**
- * has user role middleware 
+ * has user role middleware
  * checks authorization for context user, user roles
  */
 const userGuard = (roles?: UserRole | UserRole[]) => {

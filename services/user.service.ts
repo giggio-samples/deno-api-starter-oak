@@ -1,6 +1,5 @@
+import { httpErrors } from "oak/mod.ts";
 import * as userRepo from "./../repositories/user.repository.ts";
-import { httpErrors } from "https://deno.land/x/oak@v6.0.2/mod.ts";
-import { encript } from "../helpers/encription.ts";
 
 /**
  * get user by id

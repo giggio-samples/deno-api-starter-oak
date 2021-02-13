@@ -1,5 +1,5 @@
-import { Context, AuthUser } from "./../types.ts";
 import { getJwtPayload } from "../helpers/jwt.ts";
+import { AuthUser, Context } from "./../types.ts";
 
 /***
  * JWTAuth middleware
@@ -20,6 +20,7 @@ const JWTAuthMiddleware = async (
         ctx.user = user as AuthUser;
       }
     }
+    // deno-lint-ignore no-empty
   } catch (err) {}
 
   await next();
